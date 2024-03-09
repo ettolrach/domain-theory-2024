@@ -1,0 +1,33 @@
+\chapter{First Steps to Scott Domains}
+
+\section{Exercises}
+
+\begin{enumerate}
+    \item Consider the functions $\bool_{\bot} \to \bool_{\bot}$.
+    Which ones are monotonic?
+    There are a total of 27 such functions but only three significant classes.
+
+    \item Let $\mathbf{K}_K$ denote the chain of values $x_1, x_2, x_3, \dots , x_K$ where $a \leq b$ implies $x_a \sqsubseteq x_b$.
+    There is one monotonic function $\mathbf{K}_1 \to \mathbf{K}_1$, and there are three monotonic functions $\mathbf{K}_2 \to \mathbf{K}_2$.
+    \begin{enumerate}[label=\alph*)]
+        \item Write down the monotonic functions $\mathbf{K}_3 \to \mathbf{K}_3$.
+
+        \item Write a simple recursive program to calculate the number of monotonic functions $\mathbf{K}_n \to \mathbf{K}_m$.
+    \end{enumerate}
+
+    \item Give a semantics to the proc construct:
+    \begin{enumerate}[label=\alph*)]
+        \item $\llbracket \texttt{proc} \; c \rrbracket_{\mathcal{E} \sigma} = ?$
+        \item $\llbracket x \rrbracket_{\mathcal{E} \sigma} = ?$
+    \end{enumerate}
+\end{enumerate}
+
+\section{Solutions}
+
+I've only attempted one question, 2a.
+
+It's simplest to see with a visual proof. When drawn like in the question, if a line crosses another (excluding lines ending in the same point, like those shown in the question), then the function is non-monotonic.
+
+Let $x_1, x_2 \in \mathbf{K}_3$. As established, $x_1 \leq x_2$. If the lines drawn from $x_1$ and $x_2$ cross, then that means $f(x_1) > f(x_2)$, because if they were equal, then the lines would be ending in the same point, and if they were less than, they would not be crossing at all (they may be coming closer together, but they wouldn't cross). This means $f$ is non-monotonic because $x_1 \leq x_2$ does not imply $f(x_1) \leq f(x_2)$ for this choice of $f$.
+
+Thus, the monotonic functions are all those where the lines do not cross.

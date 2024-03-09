@@ -1,0 +1,49 @@
+\chapter{Recursively Defined Programs}
+
+\section{Exercises}
+
+\begin{enumerate}
+    \item Give an example of a poset $A$ and a monotonic function $f \colon A \to A$ such that $f$ \textit{doesn't} a fixed point.
+
+    \item What is the lub operator on subsets $X \subseteq \nat$ of the poset $(\nat, \leq)$?
+
+    \item Show that if a function $f \colon A \to B$ on cpos $A$ and $B$ is monotonic and $A$ is finite, then $f$ is continuous.
+
+    Hint: Finite directed sets contain their lub
+\end{enumerate}
+
+\section{Solutions}
+
+\begin{enumerate}
+    \item Take the poset $(\nat, \leq)$ and the function $f \colon \nat \to \nat$ defined to be $f(n) = n+1$.
+    Since $f$ doesn't approach any particular value, and since we don't have $\infty$, $\mathbf{fix}(f)$ doesn't exist.
+    
+    \item We require a binary operator $\sqcup$ such that it is idempotent, symmetric, and associative, and $x \leq y$ iff $x \sqcup y = y$.
+    The function $\max \colon \nat \times \nat \to \nat$ defined in the usual way satisfies these requirements.
+    For all $n, m, k \in \nat$ where $n \leq m \leq k$,
+    \begin{enumerate}[label=\roman*.]
+        \item it's idempotent, since $\max(n, n) = n$;
+        \item it's symmetric, since $\max(n, m) = m = \max(m, n)$;
+        \item it's associative, since
+        \begin{equation*}
+            \max(n, \max(m, k)) = \max(n, k) = k,
+        \end{equation*}
+        and
+        \begin{equation*}
+            \max(\max(n, m), k) = \max(m, k) = k;
+        \end{equation*}
+        \item $x \leq y$ iff $x \sqcup y = y$ by the definition of the $\max$ function.
+    \end{enumerate}
+
+    \item By the definition of continuity, it only remains to prove that for all directed subsets $X \subseteq A$, it holds that $f(\bigsqcup X) = \bigsqcup\{f(x) \mid x \in X\}$.
+    
+    Recall that $f$ being monotonic means that for all $a, b \in A$ such that $a \sqsubseteq b$, it holds that $f(a) \sqsubseteq f(b)$.
+
+    Note how any subset $X$ of $A$ will be finite, because $A$ is finite.
+    Thus, $\bigsqcup X$ will be a single $x_0 \in X$ such that, for all other $x \in X$, $x \sqsubseteq x_0$ (since $X$ is a directed set).
+    Because $f$ is monotonic, $f(\bigsqcup X) = f(x_0) \sqsupseteq f(x)$ for all other $x \in X$.
+
+    The image of $f$ under $X$, represented by $\{f(x) \mid x \in X\}$, will have a single member which is ``bigger'' (via the $\sqsubseteq$ relation) than any other; this element is $f(x_0)$, because $f$ is monotonic.
+    Thus, $\bigsqcup\{f(x) \mid x \in X\} = f(x_0) = f(\bigsqcup X)$ as desired.
+    
+\end{enumerate}
