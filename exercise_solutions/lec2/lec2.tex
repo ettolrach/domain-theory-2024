@@ -10,6 +10,10 @@
     \item Show that if a function $f \colon A \to B$ on cpos $A$ and $B$ is monotonic and $A$ is finite, then $f$ is continuous.
 
     Hint: Finite directed sets contain their lub
+
+    \item Show that if a function $f \colon A \to B$ on cpos $A$ and $B$ is monotonic, then $\bigsqcup\{f(x) \mid x \in X\}$ exists.
+
+    Hint: It suffices to show that $\{f(x) \mid x \in X\}$ is directed.
 \end{enumerate}
 
 \section{Solutions}
@@ -32,18 +36,25 @@
         \begin{equation*}
             \max(\max(n, m), k) = \max(m, k) = k;
         \end{equation*}
-        \item $x \leq y$ iff $x \sqcup y = y$ by the definition of the $\max$ function.
+        \item and finally, $x \leq y$ iff $x \sqcup y = y$ by the definition of the $\max$ function.
     \end{enumerate}
 
     \item By the definition of continuity, it only remains to prove that for all directed subsets $X \subseteq A$, it holds that $f(\bigsqcup X) = \bigsqcup\{f(x) \mid x \in X\}$.
     
     Recall that $f$ being monotonic means that for all $a, b \in A$ such that $a \sqsubseteq b$, it holds that $f(a) \sqsubseteq f(b)$.
 
-    Note how any subset $X$ of $A$ will be finite, because $A$ is finite.
-    Thus, $\bigsqcup X$ will be a single $x_0 \in X$ such that, for all other $x \in X$, $x \sqsubseteq x_0$ (since $X$ is a directed set).
+    Since any subset $X$ of $A$ will be finite, because $A$ is finite, $\bigsqcup X$ will be a single $x_0 \in X$ such that, for all other $x \in X$, $x \sqsubseteq x_0$ (since $X$ is a directed set).
     Because $f$ is monotonic, $f(\bigsqcup X) = f(x_0) \sqsupseteq f(x)$ for all other $x \in X$.
 
     The image of $f$ under $X$, represented by $\{f(x) \mid x \in X\}$, will have a single member which is ``bigger'' (via the $\sqsubseteq$ relation) than any other; this element is $f(x_0)$, because $f$ is monotonic.
-    Thus, $\bigsqcup\{f(x) \mid x \in X\} = f(x_0) = f(\bigsqcup X)$ as desired.
+    Thus, $\bigsqcup\{f(x) \mid x \in X\} = f(x_0) = f(\bigsqcup X)$.
+    $\square$
+
+    \item Consider some $a, b \in \{f(x) \mid x \in X\}$.
+    Let $a_X$ and $b_X$ be the elements which $f$ has mapped $a$ and $b$ from, so $f(a_X) = a$ and $f(b_X) = b$.
+    There exists a $c_X \in X$ such that $a_X \sqsubseteq c_X$ and $b_X \sqsubseteq c_X$, since $X$ is a directed set.
+    Let $c \in \{f(x) \mid x \in X\}$ be defined as $f(c_X) = c$. 
+    Because $f$ is monotonic, $f(a_X) = a \sqsubseteq c = f(c_X)$, and similarly $f(b_X) = b \sqsubseteq c = f(c_X)$. Thus, for any choice of $a, b \in \{f(x) \mid x \in X\}$, one can find a $c$ such that $a \sqsubseteq c$ and $b \sqsubseteq c$, and therefore $\{f(x) \mid x \in X\}$ is directed.
+    $\square$
     
 \end{enumerate}
